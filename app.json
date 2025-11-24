@@ -2,9 +2,9 @@
   "expo": {
     "name": "Diamond_App",
     "slug": "Diamond_App",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/round-diamond.png",
     "scheme": "diamondapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,10 +13,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/round-diamond.png",
+        "backgroundColor": "#000000"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.dolphinnnn0.free_Diamond_App",
+      "versionCode": 2
     },
     "web": {
       "bundler": "metro",
@@ -28,15 +30,21 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/pear-shaped-diamond.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#000000"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "41faa99e-7905-4f29-9774-d7a7d6ff64fc"
+      }
     }
   }
 }
