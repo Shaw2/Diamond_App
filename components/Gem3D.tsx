@@ -5,6 +5,7 @@ import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
 import { Asset } from 'expo-asset';
 import * as SplashScreen from 'expo-splash-screen';
 import { Image } from 'expo-image';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
 
 interface Gem3DProps {
     modelAsset: any;
@@ -95,12 +96,17 @@ export default function Gem3D({ modelAsset, scale = 1, placeholderImage, isFirst
                     {placeholderImage && (
                         <Image
                             source={placeholderImage}
-                            style={styles.placeholderImage}
-                            contentFit="contain"
+                            style={[
+                                styles.placeholderImage,
+                                isFirstTab && { opacity: 1, width: '100%', height: '100%' } // Full screen for splash
+                            ]}
+                            contentFit={isFirstTab ? 'cover' : 'contain'}
                             onLoad={handleImageLoad}
                         />
                     )}
-                    <ActivityIndicator size="large" color="#ffffff" style={styles.spinner} />
+                    {!isFirstTab && (
+                        <ActivityIndicator size="large" color="#ffffff" style={styles.spinner} />
+                    )}
                 </View>
             )}
         </View>

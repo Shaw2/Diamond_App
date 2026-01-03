@@ -6,7 +6,7 @@ import Gem3D from '@/components/Gem3D';
 export default function StoneScreen() {
     return (
         <LinearGradient
-            colors={['#000000', '#1a1a1a', '#000000']}
+            colors={['#000000ff', '#000000ff', '#000000ff', '#000000ff', '#ffffffff']}
             style={styles.container}
         >
             <Gem3D

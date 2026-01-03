@@ -40,7 +40,7 @@ export default function CustomSplash({ onFinish }: CustomSplashProps) {
         <View style={styles.container}>
             <Animated.View style={[styles.imageContainer, animatedStyle]}>
                 <Image
-                    source={require('../assets/images/pear-shaped-diamond.png')}
+                    source={require('../assets/images/diamond_splash.jpg')}
                     style={styles.image}
                     contentFit="contain"
                 />

@@ -6,7 +6,7 @@ import Gem3D from '@/components/Gem3D';
 export default function OpalScreen() {
     return (
         <LinearGradient
-            colors={['#000000', '#1a1a1aff', '#b0e0daff']}
+            colors={['#000000ff', '#000000ff', '#000000ff', '#000000ff', '#ffffffff']}
             style={styles.container}
         >
             <Gem3D
