@@ -76,26 +76,25 @@ export default function Gem3D({ modelAsset, scale = 1, placeholderImage, isFirst
     return (
         <View style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
             {startRendering && (
-                // <Canvas camera={{ position: [0, 0, 4], fov: 45 }} style={{ width: '100%', height: '100%' }}>
-                //     <ambientLight intensity={1.5} />
-                //     <directionalLight position={[5, 10, 5]} intensity={2} />
-                //     <directionalLight position={[-5, -10, -5]} intensity={1} />
-                //
-                //     <React.Suspense fallback={null}>
-                //         <Model
-                //             uri={asset.uri || ''}
-                //             scale={scale}
-                //             onLoad={() => setIsLoaded(true)}
-                //         />
-                //     </React.Suspense>
-                //
-                //     <OrbitControls
-                //         minDistance={2}
-                //         maxDistance={10}
-                //         enablePan={false}
-                //     />
-                // </Canvas>
-                <View style={{ flex: 1, width: '100%', height: '100%', backgroundColor: 'black' }} />
+                <Canvas camera={{ position: [0, 0, 4], fov: 45 }} style={{ width: '100%', height: '100%' }}>
+                    <ambientLight intensity={1.5} />
+                    <directionalLight position={[5, 10, 5]} intensity={2} />
+                    <directionalLight position={[-5, -10, -5]} intensity={1} />
+
+                    <React.Suspense fallback={null}>
+                        <Model
+                            uri={asset.uri || ''}
+                            scale={scale}
+                            onLoad={() => setIsLoaded(true)}
+                        />
+                    </React.Suspense>
+
+                    <OrbitControls
+                        minDistance={2}
+                        maxDistance={10}
+                        enablePan={false}
+                    />
+                </Canvas>
             )}
 
             {!isLoaded && (
