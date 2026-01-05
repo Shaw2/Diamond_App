@@ -2,7 +2,7 @@
   "expo": {
     "name": "Diamond_App",
     "slug": "Diamond_App",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "orientation": "portrait",
     "icon": "./assets/images/round-diamond.png",
     "scheme": "diamondapp",
@@ -10,7 +10,7 @@
     "newArchEnabled": false,
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.6"
+      "buildNumber": "1.0.7"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +19,7 @@
       },
       "edgeToEdgeEnabled": true,
       "package": "com.dolphinnnn0.free_Diamond_App",
-      "versionCode": 9
+      "versionCode": 10
     },
     "web": {
       "bundler": "metro",
@@ -37,13 +37,15 @@
           "backgroundColor": "#000000"
         }
       ],
+      "expo-font",
       "expo-web-browser",
       [
         "expo-build-properties",
         {
           "android": {
             "enableProguardInReleaseBuilds": false,
-            "enableShrinkResourcesInReleaseBuilds": false
+            "enableShrinkResourcesInReleaseBuilds": false,
+            "jsEngine": "jsc"
           }
         }
       ]

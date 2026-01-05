@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
-import { Canvas, useFrame } from '@react-three/fiber/native';
-import { OrbitControls, useGLTF } from '@react-three/drei/native';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import { Asset } from 'expo-asset';
 import * as SplashScreen from 'expo-splash-screen';
 import { Image } from 'expo-image';
