@@ -2,7 +2,7 @@
   "expo": {
     "name": "Diamond_App",
     "slug": "Diamond_App",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/images/round-diamond.png",
     "scheme": "diamondapp",
@@ -10,7 +10,7 @@
     "newArchEnabled": false,
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.3"
+      "buildNumber": "1.0.4"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +19,7 @@
       },
       "edgeToEdgeEnabled": true,
       "package": "com.dolphinnnn0.free_Diamond_App",
-      "versionCode": 6
+      "versionCode": 7
     },
     "web": {
       "bundler": "metro",
