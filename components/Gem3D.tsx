@@ -5,7 +5,7 @@ import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
 import { Asset } from 'expo-asset';
 import * as SplashScreen from 'expo-splash-screen';
 import { Image } from 'expo-image';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, runOnJS } from 'react-native-reanimated';
+
 
 interface Gem3DProps {
     modelAsset: any;
@@ -53,17 +53,23 @@ export default function Gem3D({ modelAsset, scale = 1, placeholderImage, isFirst
             await SplashScreen.hideAsync();
         }
 
-        // 3. Start 3D Rendering (after a frame to ensure paint)
-        requestAnimationFrame(() => {
-            setStartRendering(true);
-        });
+        // 3. Start 3D Rendering with safety delay
+        // Delaying init by 500ms prevents crash due to resource contention
+        // between Splash hide transition and heavy GL context creation.
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                setStartRendering(true);
+            });
+        }, 500);
     };
 
-    // Fallback: If no placeholder image, trigger start immediately
+    // Fallback: If no placeholder image, trigger start safely
     useEffect(() => {
         if (!placeholderImage) {
             if (isFirstTab) SplashScreen.hideAsync();
-            setStartRendering(true);
+            setTimeout(() => {
+                setStartRendering(true);
+            }, 500);
         }
     }, [placeholderImage, isFirstTab]);
 
