@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "project": "Gem3D Expo App",
+    "date": "2025-12-30",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "Gem3D Expo App is a mobile application showcasing interactive 3D gemstone models with seamless asset loading, smooth rendering, and intuitive tab-based navigation across multiple gem types using React Native and Three.js technologies.",
+  "core_goals": [
+    "Provide a reliable and performant 3D model viewing experience for multiple gemstones.",
+    "Ensure robust asset loading compatible with production build environments.",
+    "Create an intuitive tab navigation allowing users to easily switch between different gem models.",
+    "Maintain smooth startup with a custom splash screen bridging native and JS load times.",
+    "Guarantee stability across different JS engines and device build configurations."
+  ],
+  "key_features": [
+    "Gem3D Component for rendering rotating 3D GLB gemstone models with textures and animation.",
+    "Custom Splash Screen component to enhance user experience during app initialization.",
+    "Tab Navigation structure with three distinct tabs (Diamond, Stone, Opal), each loading a separate 3D model.",
+    "App Initialization handling font loading, global providers, and configuration setup.",
+    "Robust asset downloading mechanism to handle production asset paths (using downloadAsync) and avoid memory errors.",
+    "Configuration to disable code minification and enable JSC engine to prevent crashes related to obfuscation or JS engine.",
+    "Testing and fallback logic to isolate issues related to OpenGL context and 3D rendering stability."
+  ],
+  "user_flow_summary": [
+    "On app launch, Custom Splash Screen displays while fonts and assets are loaded.",
+    "Once initialized, user sees a tab navigation UI with three tabs: Diamond, Stone, and Opal.",
+    "User taps any tab to view the corresponding 3D gemstone model rendered by the Gem3D component.",
+    "3D model loads using a downloaded asset path ensuring compatibility with production builds.",
+    "User can observe rotating and textured 3D gem model with smooth animations.",
+    "App maintains stable rendering and handles any errors relating to GL context or JS engine differences gracefully."
+  ],
+  "validation_criteria": [
+    "3D models load successfully in production builds with no file not found errors.",
+    "Splash screen displays correctly and moves on only after assets and fonts are ready.",
+    "Tab navigation switches instantly between the three gem types with correct model displayed.",
+    "App does not crash due to JS engine differences (Hermes vs JSC) or code minification issues.",
+    "OpenGL context is initialized properly with fallback tests for simplified GLView rendering.",
+    "Asset downloading mechanism correctly converts bundled asset URIs to usable file paths.",
+    "User experience remains smooth with no visible glitches or memory leaks during 3D rendering."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "TypeScript",
+      "React Native",
+      "Expo",
+      "React Three Fiber"
+    ],
+    "features": [
+      {
+        "name": "Gem3D Component",
+        "description": "A reusable 3D rendering component that displays GLB models with texture and rotation. Handles asset downloading (downloadAsync) for production compatibility and splash screen hiding logic.",
+        "files": [
+          "components/Gem3D.tsx"
+        ]
+      },
+      {
+        "name": "Custom Splash Screen",
+        "description": "Component handling custom splash image display to bridge the gap between native splash and JS load.",
+        "files": [
+          "components/CustomSplash.tsx"
+        ]
+      },
+      {
+        "name": "Tab Navigation",
+        "description": "Main navigation structure with 3 tabs (Diamond, Stone, Opal), each rendering a different 3D gem model.",
+        "files": [
+          "app/(tabs)/_layout.tsx",
+          "app/(tabs)/diamond.tsx",
+          "app/(tabs)/stone.tsx",
+          "app/(tabs)/opal.tsx"
+        ]
+      },
+      {
+        "name": "App Initialization",
+        "description": "Root layout handling providers, font loading, and global configuration.",
+        "files": [
+          "app/_layout.tsx",
+          "app/index.tsx"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+    "tech_stack": [
+        "TypeScript",
+        "React Native",
+        "Expo",
+        "React Three Fiber"
+    ],
+    "features": [
+        {
+            "name": "Gem3D Component",
+            "description": "A reusable 3D rendering component that displays GLB models with texture and rotation. Handles asset downloading (downloadAsync) for production compatibility and splash screen hiding logic.",
+            "files": [
+                "components/Gem3D.tsx"
+            ]
+        },
+        {
+            "name": "Custom Splash Screen",
+            "description": "Component handling custom splash image display to bridge the gap between native splash and JS load.",
+            "files": [
+                "components/CustomSplash.tsx"
+            ]
+        },
+        {
+            "name": "Tab Navigation",
+            "description": "Main navigation structure with 3 tabs (Diamond, Stone, Opal), each rendering a different 3D gem model.",
+            "files": [
+                "app/(tabs)/_layout.tsx",
+                "app/(tabs)/diamond.tsx",
+                "app/(tabs)/stone.tsx",
+                "app/(tabs)/opal.tsx"
+            ]
+        },
+        {
+            "name": "App Initialization",
+            "description": "Root layout handling providers, font loading, and global configuration.",
+            "files": [
+                "app/_layout.tsx",
+                "app/index.tsx"
+            ]
+        }
+    ]
+}

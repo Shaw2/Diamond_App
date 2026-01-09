@@ -1,0 +1,42 @@
+[
+  {
+    "id": "TC001",
+    "title": "test gem3d component model loading and rendering",
+    "description": "Verify that the Gem3D component correctly downloads 3D GLB model assets using downloadAsync, handles production asset paths, and renders the rotating textured 3D gemstone model without errors."
+  },
+  {
+    "id": "TC002",
+    "title": "test custom splash screen display and transition",
+    "description": "Ensure the Custom Splash Screen component displays correctly during app initialization and only hides after fonts and assets are fully loaded, providing a smooth transition to the main app UI."
+  },
+  {
+    "id": "TC003",
+    "title": "test tab navigation gem model switching",
+    "description": "Validate that the tab navigation structure allows instant switching between Diamond, Stone, and Opal tabs, each loading and displaying the correct 3D gem model without delay or rendering issues."
+  },
+  {
+    "id": "TC004",
+    "title": "test app initialization font loading and global configuration",
+    "description": "Check that the app initialization process correctly loads required fonts, sets up global providers, and applies configuration settings to ensure stable app startup."
+  },
+  {
+    "id": "TC005",
+    "title": "test asset downloading mechanism for production compatibility",
+    "description": "Confirm that the asset downloading mechanism converts bundled asset URIs to usable file paths correctly in production builds, preventing file not found errors."
+  },
+  {
+    "id": "TC006",
+    "title": "test app stability across js engines and minification",
+    "description": "Verify that the app does not crash or behave unexpectedly due to differences between Hermes and JSC JS engines or due to code minification settings."
+  },
+  {
+    "id": "TC007",
+    "title": "test opengl context initialization and fallback logic",
+    "description": "Ensure that the OpenGL context initializes properly and that fallback logic for simplified GLView rendering works correctly to maintain 3D rendering stability."
+  },
+  {
+    "id": "TC008",
+    "title": "test smooth user experience during 3d rendering",
+    "description": "Validate that the user experience remains smooth with no visible glitches, memory leaks, or performance degradation during 3D gemstone model rendering and animation."
+  }
+]

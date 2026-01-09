@@ -1,0 +1,19 @@
+{
+  "status": "commited",
+  "type": "backend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:8081/diamond",
+  "backendAuthType": "public",
+  "executionArgs": {
+    "projectName": "Diamond_App",
+    "projectPath": "c:\\Users\\Dolphinnn\\VscodeProjects\\Diamond_App",
+    "testIds": [
+      "Gem3D_1",
+      "Gem3D_2"
+    ],
+    "additionalInstruction": "Focus on testing Gem3D component initialization and asset loading logic. Mock Asset.fromModule and downloadAsync to simulate production behavior.",
+    "envs": {
+      "API_KEY": "sk-user-1Oa2QPuQDzhIWiDUTmg6ys0f92ySmmHAeLAJuEdyWeYnKvvIYvjy9NZuRnAYqP1ZxMVxZSKf6jB9S0Vp-p5NOgaxzusqQaqghFSfAuqBF8a2ZM2XxASrXlnmysZj2e3IfLg"
+    }
+  }
+}

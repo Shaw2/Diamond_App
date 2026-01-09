@@ -1,0 +1,268 @@
+[
+  {
+    "id": "TC001",
+    "title": "Splash Screen Display and Transition",
+    "description": "Verify the custom splash screen displays correctly on app launch and only dismisses after all fonts and necessary assets are fully loaded.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Launch the app"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the custom splash screen is visible immediately on start"
+      },
+      {
+        "type": "assertion",
+        "description": "Wait until font loading completes"
+      },
+      {
+        "type": "assertion",
+        "description": "Wait until asset loading completes"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm splash screen disappears only after fonts and assets are fully loaded"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Tab Navigation Functionality",
+    "description": "Ensure that the tab navigation displays all three tabs (Diamond, Stone, Opal) and allows instant switching without delay or errors.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Launch app and wait for splash screen dismissal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the presence of three tabs labeled Diamond, Stone, and Opal"
+      },
+      {
+        "type": "action",
+        "description": "Tap the Diamond tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the Diamond gem 3D model is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Tap the Stone tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the Stone gem 3D model is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Tap the Opal tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the Opal gem 3D model is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "3D Model Rendering and Animation",
+    "description": "Verify the Gem3D component properly loads, textures, rotates, and animates the 3D gemstone models smoothly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Select each gem tab (Diamond, Stone, Opal) one by one"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the 3D GLB model loads from the downloaded asset path without errors"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the gemstone is textured correctly"
+      },
+      {
+        "type": "assertion",
+        "description": "Observe that the model is continuously rotating smoothly with no stuttering"
+      },
+      {
+        "type": "assertion",
+        "description": "Validate smooth animations throughout the model display"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Asset Downloading for Production Compatibility",
+    "description": "Test the asset downloading mechanism ensures bundled asset URIs are correctly converted to accessible file paths in production builds without causing memory errors.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Launch the app in a production build environment"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the Gem3D component uses downloadAsync to download assets"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that asset paths used for 3D models are valid file paths, not raw bundled URIs"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that memory errors do not occur during or after asset downloading"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "App Stability Across JS Engines and Code Minification",
+    "description": "Verify the app stability and performance by running it with different JavaScript engines (Hermes vs JSC) and with code minification disabled.",
+    "category": "stability",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Build and launch the app using Hermes engine with code minification enabled"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm no crashes or rendering errors during app startup or use"
+      },
+      {
+        "type": "action",
+        "description": "Build and launch the app using JSC engine with code minification disabled as per configuration"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm app runs smoothly without crashes or JS errors"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "OpenGL Context Initialization and Fallback Logic",
+    "description": "Test the OpenGL context initialization for 3D rendering and validate fallback logic triggers simplified GLView rendering on failures.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Launch the app on devices with different OpenGL capabilities"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify OpenGL context initialization succeeds on supported devices"
+      },
+      {
+        "type": "action",
+        "description": "Simulate or launch on a device/environment with poor or absent GL support"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm fallback logic triggers simplified GLView rendering without app crashes"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Error Handling on Asset Load Failures",
+    "description": "Verify the app gracefully handles errors that occur if 3D model assets fail to load, displaying appropriate error messages or UI states.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Force asset loading failure by corrupting or removing a model file from production bundle"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the tab linked to the corrupted/missing asset"
+      },
+      {
+        "type": "assertion",
+        "description": "Check the app does not crash"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm a user-friendly error message or UI placeholder is displayed indicating model failed to load"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Memory Usage and Leak Prevention During 3D Rendering",
+    "description": "Monitor memory consumption during prolonged interaction with 3D models to verify no memory leaks or spikes degrade app performance.",
+    "category": "performance",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open each gemstone tab and interact with 3D view for extended period (e.g., 30 minutes)"
+      },
+      {
+        "type": "assertion",
+        "description": "Monitor memory usage remains stable without increasing continuously"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no noticeable lag, stutter, or app crashes occur due to memory issues"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "UI Responsiveness During Model Loading",
+    "description": "Validate the tab navigation remains responsive and no UI freezes occur while 3D assets are loading asynchronously.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Switch rapidly between Diamond, Stone, and Opal tabs repeatedly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify tabs switch instantly without UI delay or freeze"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm 3D models load eventually even under rapid tab switching"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "App Initialization with Global Providers and Configuration Setup",
+    "description": "Verify the root layout properly initializes app including loading global providers, fonts, and configuration settings before user interaction.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Launch the app"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify global providers (e.g., theme, state) are initialized correctly without errors"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm fonts are loaded before splash screen completes"
+      },
+      {
+        "type": "assertion",
+        "description": "Validate configuration settings are applied correctly for the session"
+      }
+    ]
+  }
+]

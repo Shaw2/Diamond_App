@@ -32,12 +32,35 @@ function Model({ uri, scale = 1, onLoad }: { uri: string, scale?: number, onLoad
 }
 
 export default function Gem3D({ modelAsset, scale = 1, placeholderImage, isFirstTab = false }: Gem3DProps) {
-    const asset = Asset.fromModule(modelAsset);
+    const [modelUri, setModelUri] = useState<string | null>(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [startRendering, setStartRendering] = useState(false);
 
+    // 1. Preload the Asset (Critical for Production)
     useEffect(() => {
-        // Safety net: Hide splash after 3 seconds if image fails to load
+        let isMounted = true;
+
+        async function loadAsset() {
+            try {
+                const asset = Asset.fromModule(modelAsset);
+                await asset.downloadAsync();
+
+                if (isMounted && (asset.localUri || asset.uri)) {
+                    // Prefer localUri (file://) for native loaders in production
+                    setModelUri(asset.localUri || asset.uri);
+                }
+            } catch (error) {
+                console.error("Failed to load 3D model asset:", error);
+                // Even if 3D fails, we should let the image display (handled by !startRendering fallback)
+            }
+        }
+
+        loadAsset();
+        return () => { isMounted = false; };
+    }, [modelAsset]);
+
+    // 2. Splash Screen Safety Timer
+    useEffect(() => {
         if (isFirstTab) {
             const safetyTimer = setTimeout(async () => {
                 await SplashScreen.hideAsync();
@@ -47,15 +70,13 @@ export default function Gem3D({ modelAsset, scale = 1, placeholderImage, isFirst
     }, [isFirstTab]);
 
     const handleImageLoad = async () => {
-        // 1. Image is ready (onLoad fired)
-        // 2. Hide Splash Screen (Reveal Image)
+        // Image is ready, hide splash
         if (isFirstTab) {
             await SplashScreen.hideAsync();
         }
 
-        // 3. Start 3D Rendering with safety delay
-        // Delaying init by 500ms prevents crash due to resource contention
-        // between Splash hide transition and heavy GL context creation.
+        // Start 3D Rendering ONLY if model URI is ready
+        // Delay ensures heavy GL context doesn't fight with Splash transition
         setTimeout(() => {
             requestAnimationFrame(() => {
                 setStartRendering(true);
@@ -75,7 +96,7 @@ export default function Gem3D({ modelAsset, scale = 1, placeholderImage, isFirst
 
     return (
         <View style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
-            {startRendering && (
+            {startRendering && modelUri && (
                 <Canvas camera={{ position: [0, 0, 4], fov: 45 }} style={{ width: '100%', height: '100%' }}>
                     <ambientLight intensity={1.5} />
                     <directionalLight position={[5, 10, 5]} intensity={2} />
@@ -83,17 +104,13 @@ export default function Gem3D({ modelAsset, scale = 1, placeholderImage, isFirst
 
                     <React.Suspense fallback={null}>
                         <Model
-                            uri={asset.uri || ''}
+                            uri={modelUri}
                             scale={scale}
                             onLoad={() => setIsLoaded(true)}
                         />
                     </React.Suspense>
 
-                    <OrbitControls
-                        minDistance={2}
-                        maxDistance={10}
-                        enablePan={false}
-                    />
+                    <OrbitControls minDistance={2} maxDistance={10} enablePan={false} />
                 </Canvas>
             )}
 
@@ -104,7 +121,7 @@ export default function Gem3D({ modelAsset, scale = 1, placeholderImage, isFirst
                             source={placeholderImage}
                             style={[
                                 styles.placeholderImage,
-                                isFirstTab && { opacity: 1, width: '100%', height: '100%' } // Full screen for splash
+                                isFirstTab && { opacity: 1, width: '100%', height: '100%' }
                             ]}
                             contentFit={isFirstTab ? 'cover' : 'contain'}
                             onLoad={handleImageLoad}
